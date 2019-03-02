@@ -14,7 +14,7 @@
 #include "CommonConfig.h"
 
 //comment this out for non-autoboot version
-#define FW_AUTOBOOT 1
+// #define FW_AUTOBOOT 1
 
 static u8 *EXECUTE_ADDR = (u8*)0x92000000;
 static u8 *BOOTER_ADDR = (u8*)0x92F00000;
