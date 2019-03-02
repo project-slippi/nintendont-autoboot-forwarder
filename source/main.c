@@ -49,11 +49,11 @@ int main(int argc, char *argv[])
 	__io_wiisd.isInserted();
 	fatMount("sd", &__io_wiisd, 0, 4, 64);
 
-	const char *fPath = "sd:/apps/nintendont/boot.dol";
+	const char *fPath = "sd:/apps/nintendont slippi/boot.dol";
 	FILE *f = fopen(fPath,"rb");
 	if(!f)
 	{
-		fPath = "sd:/apps/Nintendont/boot.dol";
+		fPath = "sd:/apps/Nintendont Slippi/boot.dol";
 		f = fopen(fPath,"rb");
 	}
 	if(!f)
@@ -74,10 +74,10 @@ int main(int argc, char *argv[])
 	ICInvalidateRange(BOOTER_ADDR,app_booter_bin_size);
 
 #if FW_AUTOBOOT
-	f = fopen("sd:/nincfg.bin","rb");
+	f = fopen("sd:/slippi_nincfg.bin","rb");
 	if(!f)
 	{
-		printf("nincfg.bin not found!\n");
+		printf("slippi_nincfg.bin not found!\n");
 		sleep(2);
 		return -2;
 	}
@@ -86,11 +86,9 @@ int main(int argc, char *argv[])
 	fclose(f);
 
 	memset(nincfg.GamePath,0,255);
-	memset(nincfg.CheatPath,0,255);
 	//this config can be modified with whatever settings you want for this game
 	//by default it enables autoboot and sets it to boot from sd (wii vc default)
 	nincfg.Config |= (NIN_CFG_AUTO_BOOT);
-	nincfg.Config &= ~(NIN_CFG_USB);
 	//for example this line would disable any widescreen bits set in the config
 	//nincfg.Config &= ~(NIN_CFG_USB|NIN_CFG_WIIU_WIDE|NIN_CFG_FORCE_WIDE);
 	strcpy(nincfg.GamePath,"di");
